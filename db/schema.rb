@@ -39,11 +39,13 @@ ActiveRecord::Schema.define(version: 20181206212054) do
     t.date "hire_date"
     t.string "job"
     t.integer "salary"
-    t.boolean "is_employee"
-    t.boolean "is_manager"
+    t.boolean "is_employee", default: true, null: false
+    t.boolean "is_manager", default: false, null: false
+    t.integer "manager_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "reports", "users"
+  add_foreign_key "users", "users", column: "manager_id"
 end
