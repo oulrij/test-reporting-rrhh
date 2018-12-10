@@ -1,0 +1,95 @@
+subordinates:
+  - first_name: Guillaume
+    last_name: Balas
+    phone_number: 55 42 83 20 33
+    hire_date: 6/01/2019
+    job: Back-end developer
+    salary: 360000
+    is_manager: false
+    is_employee: true
+    rfc: BAGU770420GM7
+    email: employee1@user.com
+    password: 12345
+    manager_slug: manager1
+    slug: employee1
+  - first_name: Arnold
+    last_name: Rubinstein Marquez
+    phone_number: 55 34 59 57 89
+    hire_date: 16/03/2017
+    job: Back-end developer
+    salary: 460000
+    is_manager: false
+    is_employee: true
+    rfc: RUAR870615GH7
+    email: employee2@user.com
+    password: 12345
+    manager_slug: manager1
+    slug: employee2
+  - first_name: Alfredo
+    last_name: Ramos Ramos
+    phone_number: 55 67 43 30 23
+    hire_date: 17/03/2018
+    job: Back-end developer
+    salary: 450000
+    is_manager: false
+    is_employee: true
+    rfc: RAAL940728AV8
+    email: employee3@user.com
+    password: 12345
+    manager_slug: manager1
+    slug: employee3
+  - first_name: Nestor
+    last_name: Burma Alonso
+    phone_number: 55 32 98 12 38
+    hire_date: 26/06/2017
+    job: Front-end developer
+    salary: 4000000
+    is_manager: false
+    is_employee: true
+    rfc: BUNE880831NU6
+    email: employee4@user.com
+    password: 12345
+    manager_slug: manager2
+    slug: employee4
+  - first_name: Hernan
+    last_name: Grillo Macao
+    phone_number: 55 46 29 34 73
+    hire_date: 18/09/2017
+    job: Front-end developer
+    salary: 450000
+    is_manager: false
+    is_employee: true
+    rfc: GRHE8909215TI5
+    email: employee5@user.com
+    password: 12345
+    manager_slug: manager2
+    slug: employee5
+
+
+managers:
+  - first_name: Victor
+    last_name: Sanchez Sanchez
+    phone_number: 55 89 18 20 33
+    hire_date: 26/11/2016
+    job: Front-end manager
+    salary: 7500000
+    is_manager: true
+    is_employee: true
+    rfc: SAVI890502TC9
+    email: manager1@user.com
+    password: 12345
+    manager_slug:
+    slug: manager1
+  - first_name: Hernan
+    last_name: Grillo Macao
+    phone_number: 55 46 29 34 73
+    hire_date: 18/02/2017
+    job: Front-end developer
+    salary: 850000
+    is_manager: true
+    is_employee: true
+    rfc: GRHE8909215TI5
+    email: manager2@user.com
+    password: 12345
+    manager_slug:
+    slug: manager2
