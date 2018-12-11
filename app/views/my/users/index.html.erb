@@ -1,0 +1,13 @@
+<h1>Members of my team:</h1>
+  <ul>
+  <% @users.each do |user| %>
+    <li>user.first_name.capitalize, user.last_name.capitalize</li>
+  <% end %>
+  </ul>
+  <p><%= report.checked_in.strftime("Checked in at: %I:%M:%S %p") %></p>
+  <p><% if report.checked_out %>
+      <%= report.checked_out.strftime("Checked out at: %I:%M:%S %p") %>
+    <% else %>
+      <em><strong>Not checked out yet</strong></em>
+    <% end %>
+<% end %>
