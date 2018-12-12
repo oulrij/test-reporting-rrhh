@@ -1,10 +1,29 @@
-<h1>My entrance/exit reports:</h1>
-<% @reports.each do |report| %>
-  <h2><%= report.checked_in.strftime("%A, %d %b %Y") %></h2>
-  <p><%= report.checked_in.strftime("Checked in at: %I:%M:%S %p") %></p>
-  <p><% if report.checked_out %>
-      <%= report.checked_out.strftime("Checked out at: %I:%M:%S %p") %>
+<div class="container">
+  <h2>My check-in/check-out reports:</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="date">Date</th>
+        <th class="time">Checked In</th>
+        <th class="time">Checked Out</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% if @reports.length > 0 then %>
+      <% @reports.each do |report| %>
+        <tr>
+          <td class="date"><%= report.checked_in.to_date.strftime("%A, %d %b %Y") %></td>
+          <td class="time"><%= report.checked_in.to_time.strftime("%I:%M:%S %p") %></td>
+          <% if report.checked_out %>
+            <td class="time"><%= report.checked_out.to_time.strftime("%I:%M:%S %p") %></td>
+          <% else %>
+            <td class="text"><em><strong>Not checked out yet</strong></em></td>
+          <% end %>
+        </tr>
+      <% end %>
     <% else %>
-      <em><strong>Not checked out yet</strong></em>
+        <p class="text">You haven't reported anything yet!</p>
     <% end %>
-<% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
-  def index
-    @users = User.all
-  end
-
   def show
   end
 
@@ -14,16 +10,23 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
-    @user.save
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to user_path(@user)
+    else
+      render :new
+    end
+  end
 
-    redirect_to user_path(@user)
+  def edit
   end
 
   def update
-    @user.update(user_params)
-
-    redirect_to user_path(@user)
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
   end
 
   private
@@ -33,6 +36,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :lasst_name, :rfc, :phone_number, :hire_date, :job, :salary, :is_employee, :is_manager, :manager_id, :email)
+    params.require(:user).permit(:first_name, :last_name, :rfc, :phone_number, :hire_date, :job, :salary, :is_employee, :is_manager, :manager_id, :email)
   end
 end

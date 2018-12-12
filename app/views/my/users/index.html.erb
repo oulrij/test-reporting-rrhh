@@ -1,13 +1,14 @@
-<h1>Members of my team:</h1>
-  <ul>
-  <% @users.each do |user| %>
-    <li>user.first_name.capitalize, user.last_name.capitalize</li>
-  <% end %>
-  </ul>
-  <p><%= report.checked_in.strftime("Checked in at: %I:%M:%S %p") %></p>
-  <p><% if report.checked_out %>
-      <%= report.checked_out.strftime("Checked out at: %I:%M:%S %p") %>
-    <% else %>
-      <em><strong>Not checked out yet</strong></em>
-    <% end %>
-<% end %>
+<div class="container">
+  <div class="team-members">
+    <h2>My team:</h2>
+      <ul>
+      <% @users.each do |user| %>
+        <li><%= link_to("#{user.first_name.capitalize} #{user.last_name.capitalize} | #{user.rfc.upcase}", user_path(user)) %></li>
+      <% end %>
+      </ul>
+  </div>
+  <div>
+    <p><%= link_to 'Add Team Member', new_user_path, class: "btn btn-primary" %></p>
+  </div>
+
+</div>
