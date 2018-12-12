@@ -1,0 +1,46 @@
+reports:
+  - slug: employee1
+    checked_in: 08-12-2018 08:05:06 AM
+    checked_out: 08-12-2018 06:15:06 PM
+  - slug: employee1
+    checked_in: 09-12-2018 07:25:06 AM
+    checked_out: 09-12-2018 05:25:06 PM
+  - slug: employee1
+    checked_in: 10-12-2018 08:05:06 AM
+    checked_out:
+  - slug: employee2
+    checked_in: 08-12-2018 07:58:06 AM
+    checked_out: 08-12-2018 05:18:06 PM
+  - slug: employee2
+    checked_in: 09-12-2018 08:45:06 AM
+    checked_out: 09-12-2018 07:35:06 PM
+  - slug: employee2
+    checked_in: 10-12-2018 08:02:06 AM
+    checked_out:
+  - slug: employee3
+    checked_in: 08-12-2018 09:15:06 AM
+    checked_out: 08-12-2018 06:35:06 PM
+  - slug: employee3
+    checked_in: 09-12-2018 09:45:06 AM
+    checked_out: 09-12-2018 06:15:06 PM
+  - slug: employee3
+    checked_in: 10-12-2018 08:50:06 AM
+    checked_out:
+  - slug: employee4
+    checked_in: 08-12-2018 10:05:06 AM
+    checked_out: 08-12-2018 07:15:06 PM
+  - slug: employee4
+    checked_in: 09-12-2018 09:35:06 AM
+    checked_out: 09-12-2018 06:08:06 PM
+  - slug: employee4
+    checked_in: 10-12-2018 09:45:06 AM
+    checked_out:
+  - slug: employee5
+    checked_in: 08-12-2018 11:05:06 AM
+    checked_out: 08-12-2018 08:10:06 PM
+  - slug: employee5
+    checked_in: 09-12-2018 10:35:06 AM
+    checked_out: 09-12-2018 06:52:06 PM
+  - slug: employee5
+    checked_in: 10-12-2018 8:58:45 AM
+    checked_out: 10-12-2018 06:45:45 PM

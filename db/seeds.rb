@@ -3,8 +3,8 @@ require "yaml"
 puts 'Cleaning database...'
 User.destroy_all
 
-users_file = File.join(__dir__, "../test/fixtures/files/users.yml")
-reports_file = File.join(__dir__, "../test/fixtures/files/reports.yml")
+users_file = File.join(__dir__, "/data/users.yml")
+reports_file = File.join(__dir__, "/data/reports.yml")
 
 users_sample = YAML.load(open(users_file).read)
 reports_sample = YAML.load(open(reports_file).read)
