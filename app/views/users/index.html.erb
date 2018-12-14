@@ -3,7 +3,7 @@
     <h2>My team:</h2>
       <ul>
       <% @users.each do |subordinate| %>
-        <li><%= link_to("#{subordinate.first_name.capitalize} #{subordinate.last_name.capitalize} | #{subordinate.rfc.upcase}", edit_user_user_path(current_user.id, subordinate)) %>
+        <li><%= link_to("#{subordinate.first_name.capitalize} #{subordinate.last_name.capitalize} | #{subordinate.rfc.upcase}", user_user_path(current_user.id, subordinate)) %>
 
         </li>
       <% end %>

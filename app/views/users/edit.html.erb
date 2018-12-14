@@ -19,13 +19,15 @@
     </div>
 
     <div class="company-data">
-      <h3>Company-related data</h3>
+      <h3>Administrative data</h3>
       <div class="form-inputs">
       <%= f.input :hire_date,
                   required: true %>
       <%= f.input :job %>
       <%= f.input :salary %>
       <%= f.input :is_manager %>
+      <%= f.input :manager_id,
+                  collection: User.where(is_manager: true).map { |user| ["#{user.first_name} #{user.last_name}", user.id] } %>
       </div>
     </div>
 

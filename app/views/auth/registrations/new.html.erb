@@ -5,25 +5,41 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
+      <h3>Personal data</h3>
       <%= f.input :rfc,
                   label: 'RFC',
                   autofocus: true ,
                   required: true %>
       <%= f.input :first_name %>
       <%= f.input :last_name %>
-      <%= f.input :email,
-                  required: true,
-                  input_html: { autocomplete: "email" }%>
-      <%= f.input :password,
-                  required: true,
-                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                  input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation,
-                  required: true,
-                  input_html: { autocomplete: "new-password" } %>
       <%= f.input :phone_number %>
-      <%= f.check_box :is_manager, label: 'Is Manager?', as: :radio_buttons %>
-      <%= f.input :manager_id, :input_html => { :value => current_user.id }, label: false, disabled: true %>
+    </div>
+
+     <div class="form-inputs">
+      <h3>Administrative data</h3>
+        <%= f.input :hire_date,
+                    required: true,
+                    label: 'Hired on:' %>
+        <%= f.input :salary %>
+        <%= f.check_box :is_manager, label: 'Is Manager?', as: :radio_buttons %>
+
+        <%= f.input :manager_id,
+                    collection: User.where(is_manager: true).map { |user| ["#{user.first_name} #{user.last_name}", user.id] },
+                    selected: current_user.id %>
+     </div>
+
+     <div class="form-inputs">
+      <h3>Online access details</h3>
+        <%= f.input :email,
+                    required: true,
+                    input_html: { autocomplete: "email" }%>
+        <%= f.input :password,
+                    required: true,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.input :password_confirmation,
+                    required: true,
+                    input_html: { autocomplete: "new-password" } %>
     </div>
 
     <div class="form-actions">
