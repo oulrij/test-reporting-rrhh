@@ -10,6 +10,11 @@ class ActiveSupport::TestCase
   Warden.test_mode!
 
   # Add more helper methods to be used by all tests here...
+  def sign_in(user:, password:)
+      post user_session_path \
+        "user[email]"    => user.email,
+        "user[password]" => password
+  end
 end
 
 Capybara.register_driver :headless_chrome do |app|

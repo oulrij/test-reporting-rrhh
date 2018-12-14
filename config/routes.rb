@@ -1,18 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users, :path_prefix => 'my'
-  resources :users
-
   root to: 'pages#home'
 
-  namespace :my do
-    resources :reports, only: %i[index]
-    resources :users, only: %i[index]
+  devise_for :users, :path => 'auth', :controllers => {:registrations => 'auth/registrations'}
+
+  resources :users, only: %i[show] do
+    resources :reports, only: %i[show edit update destroy]
+    resources :users, only: %i[index show edit update], path: 'team'
+    # get :my_index, on: :member
   end
 
-  resources :users, except: %i[destroy] do
-    resources :reports, only: %i[index new create]
-  end
-  resources :reports, only: %i[show edit update destroy]
+  resources :users, only: %i[edit update]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

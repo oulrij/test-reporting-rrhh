@@ -1,18 +1,21 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
+  def index
+    @users = current_user.subordinates
+  end
+
   def show
   end
 
   def new
     @user = User.new
-    redirect_to new_user_registration_path
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_path(@user)
+      redirect_to user_user_path(current_user)
     else
       render :new
     end
@@ -23,7 +26,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user)
+      return redirect_to user_path(current_user) if @user.id == current_user.id
+
+      return redirect_to user_user_path(current_user, @user)
     else
       render :edit
     end
@@ -36,6 +41,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :rfc, :phone_number, :hire_date, :job, :salary, :is_employee, :is_manager, :manager_id, :email)
+    params.require(:user).permit(:first_name, :last_name, :rfc, :phone_number, :hire_date, :job, :salary, :is_manager, :manager_id, :email)
   end
 end

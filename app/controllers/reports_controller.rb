@@ -2,7 +2,7 @@ class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
 
   def index
-    @reports = report.all
+    @reports = Report.all.order('checked_in DESC')
   end
 
   def show

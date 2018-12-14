@@ -11,8 +11,8 @@
       <% case current_user.is_manager %>
       <% when true %>
         <!-- Links when manager is logged in -->
-        <%= link_to "My Team", my_users_path, class: "navbar-wagon-item navbar-wagon-link" %>
-        <%= link_to "My Reports", my_reports_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        <%= link_to "My Team", user_users_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
+        <%= link_to "My Reports", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
 
         <!-- Avatar with dropdown menu -->
         <div class="navbar-wagon-item">
@@ -34,7 +34,7 @@
         </div>
       <% else %>
         <!-- Links when employee is logged in -->
-        <%= link_to "My Reports", my_reports_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        <%= link_to "My Reports", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
 
         <!-- Avatar with dropdown menu -->
         <div class="navbar-wagon-item">
@@ -64,12 +64,12 @@
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
       <% if user_signed_in? %>
         <li>
-          <%= link_to "My Reports", "my_reports_path", class: "navbar-wagon-item navbar-wagon-link" %>
+          <%= link_to "My Reports", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
         </li>
         <% case current_user.is_manager %>
         <% when true %>
           <li>
-            <%= link_to "My Team", my_users_path, class: "navbar-wagon-item navbar-wagon-link" %>
+            <%= link_to "My Team", user_users_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
           </li>
           <li>
             <%= link_to edit_user_registration_path do %>
