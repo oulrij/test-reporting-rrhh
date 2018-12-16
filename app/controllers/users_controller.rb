@@ -2,16 +2,19 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
   def index
-    @users = current_user.subordinates
+    @users = policy_scope(User).all
   end
 
   def show
+    authorize @user
   end
 
   def edit
+    authorize @user
   end
 
   def update
+    authorize @user
     if @user.update(user_params)
       return redirect_to user_path(current_user) if @user.id == current_user.id
 

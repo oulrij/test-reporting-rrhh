@@ -2,15 +2,18 @@
   <div class="team-members">
     <h2>My team:</h2>
       <ul>
-      <% @users.each do |subordinate| %>
-        <li><%= link_to("#{subordinate.first_name.capitalize} #{subordinate.last_name.capitalize} | #{subordinate.rfc.upcase}", user_user_path(current_user.id, subordinate)) %>
-
-        </li>
+      <% @users.each do |user| %>
+        <% if policy(user).update?  %>
+          <li><%= link_to("#{user.first_name.capitalize} #{user.last_name.capitalize} | #{user.rfc.upcase}", user_user_path(current_user.id, user)) %>
+          </li>
+        <% end %>
       <% end %>
       </ul>
   </div>
   <div>
+    <% if policy(@users).create? %>
     <p><%= link_to 'Add Team Member', new_user_registration_path, class: "btn btn-primary" %></p>
+    <% end %>
   </div>
 
 </div>

@@ -1,0 +1,26 @@
+<div class="container">
+  <h2><%= "Create a report for #{@report.user.first_name} #{@report.user.last_name}" %></h2>
+
+  <%= simple_form_for(@report) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs checked-in">
+      <%= f.input :checked_in,
+                  label: "Checked In",
+                  autofocus: true ,
+                  required: true %>
+    </div>
+
+    <div class="form-inputs checked-in">
+      <%= f.input :checked_out,
+                  label: "Checked Out",
+                  required: true %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Update" %>
+    </div>
+  <% end %>
+  <br/>
+  <%= link_to "Back", :back %>
+</div>

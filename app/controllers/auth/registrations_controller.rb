@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Auth::RegistrationsController < Devise::RegistrationsController
+  ## Enabling Managers to create subordinate employees
   before_action :authenticate_user!,
                 :redirect_unless_admin,
                 :configure_permitted_parameters,

@@ -17,14 +17,11 @@
     <p><strong>Is a manager?</strong> <%= @user.is_manager ? "Yes" : "No" %></p>
   </div>
   <br/>
-  <% if current_user.is_manager == true && rel %>
-  <div>
-    <p><%= link_to 'Edit your information', edit_user_path(current_user), class: "btn btn-primary" %></p>
-  </div>
-  <% else %>
-  <div>
-    <p><%= link_to 'Edit employee data', edit_user_user_path(current_user, @user), class: "btn btn-primary" %></p>
-  </div>
+
+  <% if policy(@user).update? %>
+    <div>
+      <p><%= link_to 'Edit information', edit_user_path(@user), class: "btn btn-primary" %></p>
+    </div>
   <% end %>
 
   <div class="reports-list">
@@ -45,10 +42,11 @@
             <td class="time"><%= report.checked_in.to_time.strftime("%I:%M:%S %p") %></td>
             <% if report.checked_out %>
               <td class="time"><%= report.checked_out.to_time.strftime("%I:%M:%S %p") %></td>
+              <td class="button"><%= link_to 'Edit report', edit_report_path(report), class: "btn-xs btn-danger" %></td>
             <% else %>
               <td class="text"><em><strong>Not checked out yet</strong></em></td>
+              <td class="button"><%= link_to 'Finalize report', edit_report_path(report), class: "btn-xs btn-success" %></td>
             <% end %>
-            <td class="button"><!-- ADD EDIT BUTTON IF MANAGER--></td>
           </tr>
         <% end %>
       <% else %>
@@ -56,9 +54,11 @@
       <% end %>
       </tbody>
     </table>
+
     <div>
-      <!-- ADD "ADD REPORT" BUTTON IF MANAGER -->
+        <%= link_to 'Create new report', new_report_path(@user), class: "btn-xs btn-success" %></td>
     </div>
+
   </div>
   <br>
   <div>
