@@ -18,7 +18,9 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Update" %>
+      <% if policy(@report).edit? %>
+        <%= f.button :submit, "Update" %>
+      <% end %>
     </div>
   <% end %>
   <br/>

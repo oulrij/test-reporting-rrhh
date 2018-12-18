@@ -1,5 +1,5 @@
 <div class="container">
-  <h2><%= "Create a report for #{@report.user.first_name} #{@report.user.last_name}" %></h2>
+  <h2><%= "Create a report for #{@user.first_name} #{@user.last_name}" %></h2>
 
   <%= simple_form_for(@report) do |f| %>
     <%= f.error_notification %>
@@ -18,7 +18,9 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Update" %>
+      <% if policy(@report).create? %>
+        <%= f.button :submit, "Update" %>
+      <% end %>
     </div>
   <% end %>
   <br/>

@@ -2,7 +2,7 @@ class ReportPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.is_manager?
-        a = user.subordinates.map { |subo| subo.reports }
+        a = user.subordinates.map & :reports
         a << user.reports
         a.flatten
       else

@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   ## Nesting specific for Managers
   resources :users, only: %i[show] do
-    # resources :reports, only: %i[show edit update]
     resources :users, only: %i[index show edit update], path: 'team'
   end
 
@@ -15,5 +14,13 @@ Rails.application.routes.draw do
 
   resources :reports, only: %i[show new create edit update]
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  ## API routes
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :users, only: %i[show] do
+        resources :users, only: %i[index show edit update], path: 'team'
+      end
+    end
+  end
 end

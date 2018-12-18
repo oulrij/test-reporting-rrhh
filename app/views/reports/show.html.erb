@@ -2,29 +2,29 @@
   <%  rel = current_user.id == @report.user.id %>
   <h2><%= rel ? "Your report:" : "Report for #{@report.user.first_name} #{@report.user.last_name}" %></h2>
   <% if @report.checked_out %>
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th class="date">Date</th>
-          <th class="time">Checked In</th>
-          <th class="time">Checked Out</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="date"><%= @report.checked_in.to_date.strftime("%A, %d %b %Y") %></td>
-          <td class="time"><%= @report.checked_in.to_time.strftime("%I:%M:%S %p") %></td>
-          <td class="time"><%= @report.checked_out.to_time.strftime("%I:%M:%S %p") %></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
     <div>
-      <%= link_to 'Edit report', edit_user_user_report_path(@report), class: "btn-xs btn-danger" %>
+      <table>
+        <thead>
+          <tr>
+            <th class="date">Date</th>
+            <th class="time">Checked In</th>
+            <th class="time">Checked Out</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="date"><%= @report.checked_in.to_date.strftime("%A, %d %b %Y") %></td>
+            <td class="time"><%= @report.checked_in.to_time.strftime("%I:%M:%S %p") %></td>
+            <td class="time"><%= @report.checked_out.to_time.strftime("%I:%M:%S %p") %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
+    <% if policy(@report).edit? %>
+      <div>
+        <%= link_to 'Edit report', edit_user_user_report_path(@report), class: "btn-xs btn-danger" %>
+      </div>
+    <% end %>
   <% else %>
   <div>
     <table>
@@ -44,7 +44,7 @@
       </tbody>
     </table>
   </div>
-
+  <% if policy(@report).edit? %>
     <div>
       <%= link_to 'Finalize report', edit_user_user_report_path(@report), class: "btn-xs btn-success" %>
     </div>
