@@ -11,16 +11,20 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: %i[edit update]
-
   resources :reports, only: %i[show new create edit update]
 
 
-  ## API routes
+  ## API routes ----------------------------------------
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      devise_for :users,
+                :path => 'auth',
+                :controllers => {:registrations => 'api/v1/auth/registrations'},
+                skip: %i[sessions password]
       resources :users, only: %i[show] do
-        resources :users, only: %i[index show edit update], path: 'team'
+        resources :users, only: %i[index show update], path: 'team'
       end
+      resources :users, only: %i[edit update]
     end
   end
 end

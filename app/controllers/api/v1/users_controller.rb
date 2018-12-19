@@ -1,16 +1,12 @@
-class Api::V1::ReportsController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User#,except: %i[show]
-
-  before_action :set_user, only: %i[show edit update]
+class Api::V1::UsersController < Api::V1::BaseController
+  acts_as_token_authentication_handler_for User
+  before_action :set_user, only: %i[show update]
 
   def index
-    @users = policy_scope(User)
+    @users = policy_scope(User).all
   end
 
   def show
-  end
-
-  def edit
   end
 
   def update

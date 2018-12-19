@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    authorize @user
     if @user.update(user_params)
       return redirect_to user_path(current_user) if @user.id == current_user.id
 
