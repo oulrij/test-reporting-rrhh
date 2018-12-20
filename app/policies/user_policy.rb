@@ -2,16 +2,15 @@ class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.is_manager?
-        a = user.subordinates
-        a << user
+        user.subordinates
       else
-        user
+        scope.where(id: user.id)
       end
     end
   end
 
   def show?
-    true
+    user.subordinates.include?(record) || user.id == record.id
   end
 
   def create?

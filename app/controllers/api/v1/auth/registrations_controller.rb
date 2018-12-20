@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Api::V1::Auth::RegistrationsController < Devise::RegistrationsController
+  respond_to :json
+
   ## Enabling Managers to create subordinate employees
-  before_action :authenticate_user!,
+  before_action :authenticate_user,
                 :redirect_unless_admin,
                 :configure_permitted_parameters,
                 only: %i[new create]

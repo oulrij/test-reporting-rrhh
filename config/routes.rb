@@ -18,8 +18,11 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       devise_for :users,
-                :path => 'auth',
-                :controllers => {:registrations => 'api/v1/auth/registrations'},
+                path: 'auth',
+                controllers: {
+                  registrations: 'api/v1/auth/registrations',
+                  sessions: 'api/v1/auth/sessions'
+                },
                 skip: %i[sessions password]
       resources :users, only: %i[show] do
         resources :users, only: %i[index show update], path: 'team'

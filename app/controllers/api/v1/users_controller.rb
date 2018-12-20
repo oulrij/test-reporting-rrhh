@@ -1,9 +1,9 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User
+  acts_as_token_authentication_handler_for User, fallback: :none
   before_action :set_user, only: %i[show update]
 
   def index
-    @users = policy_scope(User).all
+    @users = policy_scope(User)
   end
 
   def show
