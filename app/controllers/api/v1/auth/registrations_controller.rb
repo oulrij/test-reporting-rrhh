@@ -1,27 +1,25 @@
 # frozen_string_literal: true
 
 class Api::V1::Auth::RegistrationsController < Devise::RegistrationsController
-  respond_to :json
-
-  ## Enabling Managers to create subordinate employees
-  before_action :authenticate_user,
-                :redirect_unless_admin,
-                :configure_permitted_parameters,
-                only: %i[create]
-  skip_before_action :require_no_authentication
-
-  # before_action :configure_sign_up_params, only: [:create]
+  acts_as_token_authentication_handler_for User, fallback: :none
+  skip_before_action :verify_authenticity_token, only: :create
+  before_action :sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  respond_to :json
 
   # GET /resource/sign_up
   # def new
   #   super
   # end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+  # # POST /resource
+  def create
+    user = User.create(sign_up_params)
+    if user.save
+      render status: 200, json: { message: "Successfully added employee to your team",
+                                  new_employee: user }.to_json
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -49,28 +47,20 @@ class Api::V1::Auth::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def redirect_unless_admin
-    unless current_user.try(:is_manager?)
-      flash[:error] = "Only managers can do that"
-      redirect_to user_users_path(current_user)
-    end
+  def sign_up_params
+    params.require(user).permit(%i[first_name
+                                    last_name
+                                    rfc
+                                    phone_number
+                                    hire_date
+                                    job
+                                    salary
+                                    email
+                                    is_manager
+                                    manager_id
+                                    password
+                                    password_confirmation])
   end
-
-  # def sign_up(resource_name, resource)
-  #   true
-  # end
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(
-      :sign_up,
-      keys: %i[rfc first_name last_name job salary hire_date is_manager manager_id email password password_confirmation]
-    )
-  end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params

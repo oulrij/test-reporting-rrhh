@@ -12,7 +12,7 @@ class ReportPolicy < ApplicationPolicy
   end
 
   def show?
-    user.subordinates.include?(record) || user.id == record.id
+    user.subordinates.include?(record.user) || user.id == record.user_id
   end
 
   def create?

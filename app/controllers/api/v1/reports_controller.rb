@@ -1,4 +1,5 @@
 class Api::V1::ReportsController < Api::V1::BaseController
+  acts_as_token_authentication_handler_for User, fallback: :none
   before_action :set_report, only: %i[show update]
 
   def index
@@ -6,12 +7,6 @@ class Api::V1::ReportsController < Api::V1::BaseController
   end
 
   def show
-  end
-
-  def new
-    @report = Report.new
-    @user = User.find(params[:format])
-    authorize @report
   end
 
   def create
@@ -27,8 +22,11 @@ class Api::V1::ReportsController < Api::V1::BaseController
   end
 
   def update
-    @report.update(report_params)
-    redirect_to user_user_path(@report.user)
+    if @report.update(report_params)
+      render :show
+    else
+      render_error
+    end
   end
 
   private
@@ -39,7 +37,7 @@ class Api::V1::ReportsController < Api::V1::BaseController
   end
 
   def report_params
-    params.require(:report).permit(:checked_in, :cheked_out)
+    params.require(:report).permit(:checked_in, :checked_out)
   end
 
   def render_error

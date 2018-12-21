@@ -10,6 +10,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def update
+    @user = @user.update(user_params)
     if @user.update(user_params)
       render :show
     else
