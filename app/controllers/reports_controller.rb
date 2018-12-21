@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[show edit update destroy]
+  before_action :set_report, only: %i[show edit update]
 
   def index
     @reports = policy_scope(Report).all.order('checked_in DESC')
@@ -30,7 +30,6 @@ class ReportsController < ApplicationController
   end
 
   def update
-    authorize @report
     @report.update(report_params)
     redirect_to user_user_path(@report.user)
   end

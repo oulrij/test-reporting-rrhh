@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
   def index
-    @users = policy_scope(User).all
+    @users = policy_scope(User).all.order('last_name ASC')
   end
 
   def show

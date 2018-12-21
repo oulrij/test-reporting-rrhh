@@ -7,7 +7,7 @@ class Api::V1::Auth::RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_user,
                 :redirect_unless_admin,
                 :configure_permitted_parameters,
-                only: %i[new create]
+                only: %i[create]
   skip_before_action :require_no_authentication
 
   # before_action :configure_sign_up_params, only: [:create]
@@ -56,9 +56,9 @@ class Api::V1::Auth::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def sign_up(resource_name, resource)
-    true
-  end
+  # def sign_up(resource_name, resource)
+  #   true
+  # end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
