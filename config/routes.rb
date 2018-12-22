@@ -20,10 +20,10 @@ Rails.application.routes.draw do
       devise_for :users,
                 path: 'auth',
                 controllers: {
-                  # sessions: 'api/v1/auth/sessions',
+                  sessions: 'api/v1/auth/sessions',
                   registrations: 'api/v1/auth/registrations'
                 },
-                skip: %i[sessions password]
+                skip: %i[password]
       resources :users, only: %i[show] do
         resources :users, only: %i[index show update], path: 'team'
       end

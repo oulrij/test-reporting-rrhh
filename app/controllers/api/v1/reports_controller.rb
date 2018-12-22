@@ -10,12 +10,12 @@ class Api::V1::ReportsController < Api::V1::BaseController
   end
 
   def create
+    @user = User.find(params[:report][:user_id])
+    @report = Report.new(report_params)
     authorize @report
-    @user = User.find(params[:format])
-    @report = Report.new(reports_params)
     @report.user = @user
     if @report.save
-      render :new
+      render :show
     else
       render_error
     end
